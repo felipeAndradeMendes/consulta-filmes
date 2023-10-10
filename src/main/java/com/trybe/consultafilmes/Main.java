@@ -15,7 +15,8 @@ public class Main {
     Set<String> resultados = queries.actorsThatInterpretThemselves();
     System.out.println("Atores que interpretam a si mesmos: " + resultados);
 
-    List<String> actors = queries.actorsThatActedInMoviesOfDirectorInAlphabeticOrder("Quentin Tarantino");
+    List<String> actors = queries
+        .actorsThatActedInMoviesOfDirectorInAlphabeticOrder("Quentin Tarantino");
     System.out.println("Atores que atuaram no filme de um determinado diretor: " + actors);
   }
 }

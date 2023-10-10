@@ -32,6 +32,7 @@ public class Queries {
         .filter(entry -> entry.getValue().contains(entry.getKey()))
         .map(Entry::getKey)
         .collect(Collectors.toSet());
+    // Alternativa
 //    return movies.stream()
 //        .flatMap(filme ->
 //            filme.actorsByCharacters.keySet().stream()
@@ -58,6 +59,15 @@ public class Queries {
         .distinct()
         .sorted()
         .collect(Collectors.toList());
+
+    // Alternativa
+//    return movies.stream()
+//        .filter(movie -> movie.getDirectors().contains(diretor))
+//        .flatMap(movie -> movie.getActors().stream())
+//        .collect(Collectors.toSet())
+//        .stream()
+//        .sorted()
+//        .collect(Collectors.toList());
   }
 
   /**
