@@ -5,7 +5,7 @@ import java.util.Set;
 public class Main {
 
   /**
-   * Função utilizada apenas para validação da solução do desafio.
+   * Função utilizada apenas para validação da solução do desafio!.
    *
    * @param args Não utilizado.
    */
