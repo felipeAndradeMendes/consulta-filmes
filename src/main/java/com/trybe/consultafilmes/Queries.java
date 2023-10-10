@@ -2,12 +2,13 @@ package com.trybe.consultafilmes;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
-import static java.util.Collections.emptySet;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 public class Queries {
 
@@ -26,7 +27,19 @@ public class Queries {
    * conjunto associado a esta mesma chave.</p>
    */
   public Set<String> actorsThatInterpretThemselves() {
-    return emptySet(); // TODO: Implementar.
+    return this.movies.stream()
+        .flatMap(movie -> movie.getActorsByCharacters().entrySet().stream())
+        .filter(entry -> entry.getValue().contains(entry.getKey()))
+        .map(Entry::getKey)
+        .collect(Collectors.toSet());
+//    return movies.stream()
+//        .flatMap(filme ->
+//            filme.actorsByCharacters.keySet().stream()
+//                .filter(personagem ->
+//                    filme.actorsByCharacters.get(personagem).contains(personagem)
+//                )
+//        )
+//        .collect(toSet());
   }
 
   /**
