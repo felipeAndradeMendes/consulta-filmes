@@ -1,6 +1,7 @@
 package com.trybe.consultafilmes;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Main {
@@ -22,5 +23,9 @@ public class Main {
     List<Movie> movies = queries
         .moviesWithAtLeastOneDirectorActedMostRecentFirst();
     System.out.println("Filmes em que diretores tb atuaram: " + movies);
+
+    Map<String, Set<Movie>> moviesCategories = queries
+        .moviesReleasedInYearGroupedByCategory(2021);
+    System.out.println("Filmes por categoria: " + moviesCategories);
   }
 }

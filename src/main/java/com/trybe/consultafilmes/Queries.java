@@ -1,8 +1,6 @@
 package com.trybe.consultafilmes;
 
-import static java.util.Collections.emptyList;
-import static java.util.Collections.emptyMap;
-
+import java.util.AbstractMap.SimpleImmutableEntry;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
@@ -100,6 +98,35 @@ public class Queries {
    * conjunto de filmes que se encaixam na categoria da chave correspondente.</p>
    */
   public Map<String, Set<Movie>> moviesReleasedInYearGroupedByCategory(int ano) {
-    return emptyMap(); // TODO: Implementar (bônus).
+    List<Movie> filteredMovies = movies.stream()
+        .filter(filme -> filme.getReleaseYear() == ano)
+        .collect(Collectors.toList());
+
+    List<SimpleImmutableEntry<String, Movie>> categoryMoviePairs = filteredMovies.stream()
+        .flatMap(filme -> filme.getCategories().stream()
+            .map(category -> new SimpleImmutableEntry<>(category, filme))
+        )
+        .collect(Collectors.toList());
+
+    return categoryMoviePairs.stream()
+        .collect(Collectors.groupingBy(
+            SimpleImmutableEntry::getKey,
+            Collectors.mapping(SimpleImmutableEntry::getValue, Collectors.toSet())
+        ));
+
+
+    // Alternativa (gabarito)
+    //    return movies.stream()
+    //        .filter(filme -> filme.releaseYear == ano)
+    //        .flatMap(filme -> filme.categories.stream()
+    //            .map(category -> new SimpleImmutableEntry<>(category, filme))
+    //        )
+    //        .collect(
+    //            groupingBy(
+    //                Entry::getKey,
+    //                mapping(Entry::getValue, toSet())
+    //            )
+    //   );
+
   }
 }
