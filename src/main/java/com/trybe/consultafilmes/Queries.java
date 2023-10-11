@@ -4,6 +4,7 @@ import static java.util.Collections.emptyList;
 import static java.util.Collections.emptyMap;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -79,7 +80,16 @@ public class Queries {
    * pelo menos um dos itens do campo `directors` também é um item do campo `atores`.</p>
    */
   public List<Movie> moviesWithAtLeastOneDirectorActedMostRecentFirst() {
-    return emptyList(); // TODO: Implementar.
+    return movies.stream()
+        .flatMap(movie -> movie.directors.stream()
+            .filter(director -> movie.getActors().contains(director))
+            .map(director -> movie)
+        )
+        .distinct()
+        .sorted(Comparator.comparing(Movie::getReleaseYear).reversed())
+        .collect(Collectors.toList());
+
+
   }
 
   /**

@@ -18,5 +18,9 @@ public class Main {
     List<String> actors = queries
         .actorsThatActedInMoviesOfDirectorInAlphabeticOrder("Quentin Tarantino");
     System.out.println("Atores que atuaram no filme de um determinado diretor: " + actors);
+
+    List<Movie> movies = queries
+        .moviesWithAtLeastOneDirectorActedMostRecentFirst();
+    System.out.println("Filmes em que diretores tb atuaram: " + movies);
   }
 }
